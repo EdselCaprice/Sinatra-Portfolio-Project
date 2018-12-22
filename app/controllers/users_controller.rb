@@ -27,10 +27,10 @@ class UsersController < ApplicationController
  end
 
  post '/login' do
-   user = User.find_by(:Username => params[:username])
-   if user.password_digest == params[:password_digest]
-     session[:user_id] = user.id
-     redirect to '/wishlists'
+   @user = User.find_by(:Username => params[:username])
+   if @user.password_digest == params[:password_digest]
+     session[:user_id] = @user.id
+     erb :'/users/show'
    else
      redirect to '/login'
    end
