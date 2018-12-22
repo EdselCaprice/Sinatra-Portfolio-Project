@@ -33,6 +33,7 @@ class UsersController < ApplicationController
 
  post '/login' do
    @user = User.find_by(:Username => params[:username])
+   #if @user && @user.authenticate(params[:password_digest])
    if @user.password_digest == params[:password_digest]
      session[:user_id] = @user.id
      erb :'/users/show'
