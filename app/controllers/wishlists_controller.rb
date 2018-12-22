@@ -41,7 +41,7 @@ end
       @wishlist = Wishlist.create(params)
       @wishlist.user_id = current_user.id
       @wishlist.save
-    #  erb :'/wishlists/show_wishlist'
+      redirect to "/wishlists/#{@wishlist.id}"
       end
     else
       redirect to '/login'

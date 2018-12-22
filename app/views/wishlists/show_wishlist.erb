@@ -6,11 +6,12 @@
 
   <form method="post" action="/wishlists/<%=@wishlist.id%>/delete">
     <input id="hidden" type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete Tweet">
+    <input type="submit" value="Delete List">
   </form>
 
 
 <p><a href="/wishlists/<%=@wishlist.id%>/edit">Edit This List</a>
 <p><a href="/wishlists/new">Create New Wishlist</a>
+<p><a href="/user/show">View your wishlists</a>
 <p><a href="/wishlists">See What Other Users have on their Wishlists</a>
 <p><a href="/logout">Logout</a>
