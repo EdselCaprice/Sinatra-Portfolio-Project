@@ -7,3 +7,4 @@ configure :development do
 end
 
 require_all 'app'
+SINATRA_ACTIVESUPPORT_WARNING=false

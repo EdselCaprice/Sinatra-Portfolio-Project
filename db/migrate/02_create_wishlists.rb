@@ -1,4 +1,4 @@
-class CreateWishlistsTable < ActiveRecord::Migration
+class CreateWishlists < ActiveRecord::Migration
   def change
     create_table :wishlists do |t|
       t.text :giftee
