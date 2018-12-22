@@ -1,5 +1,6 @@
 <form method="post" action="/wishlists/<%=@wishlist.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="text" name="giftee" value="<%= @wishlist.giftee %>">
   <input type="text" name="list_content" value="<%= @wishlist.list_content %>">
   <input type="submit" value="submit">
 </form>
