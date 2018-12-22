@@ -8,6 +8,14 @@ class UsersController < ApplicationController
   end
  end
 
+ get '/login' do
+   if logged_in?
+     redirect to '/wishlists'
+   else
+     erb :'/users/login'
+   end
+ end
+
  post '/signup' do
    if params[:username] == "" || params[:email] == "" || params[:password_digest] == ""
      redirect to '/signup'
@@ -17,6 +25,20 @@ class UsersController < ApplicationController
      redirect to '/wishlists'
    end
  end
+
+ post 'login' do
+   user = User.find_by(:Username => params[:username])
+   if user.password_digest == params[:password_digest]
+     session[:user_id] = user.id
+     redirect to '/wishlists'
+   else
+     redirect to '/login'
+   end
+ end
+
+
+
+
 
 
 end
