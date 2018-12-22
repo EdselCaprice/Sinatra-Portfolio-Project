@@ -32,26 +32,35 @@ class WishlistsController < ApplicationController
     end
   end
 
-  patch '/wishlists' do
+
+  get '/wishlists/:id/edit' do
+    if logged_in?
+      @wishlist = Wishlist.find_by_id(params[:id])
+      erb :'/wishlists/edit_wishlist'
+    else
+      redirect to '/login'
+  end
+
+  patch '/wishlists/:id' do
     if logged_in?
       if params[:list_content] == ""
-  redirect to "/wishlists/#{params[:id]}/edit"
-else
-  @wishlist = Wishlist.find_by_id(params[:id])
-  if @wishlist && @wishlist.user == current_user
-    if @wishlist.update(content: params[:content])
-      redirect to "/wishlists/#{@wishlist.id}"
+        redirect to "/wishlists/#{params[:id]}/edit"
+      else
+        @wishlist = Wishlist.find_by_id(params[:id])
+        if @wishlist && @wishlist.user == current_user
+          if @wishlist.update(content: params[:content])
+            redirect to "/wishlists/#{@wishlist.id}"
+          else
+            redirect to "/wishlists/#{@wishlist.id}/edit"
+          end
+        else
+          redirect to '/wishlists'
+        end
+      end
     else
-      redirect to "/wishlists/#{@wishlist.id}/edit"
+      redirect to '/login'
     end
-  else
-    redirect to '/wishlists'
   end
-end
-else
-redirect to '/login'
-end
-end
 
 
 
