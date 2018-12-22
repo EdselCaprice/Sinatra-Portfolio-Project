@@ -26,7 +26,7 @@ class UsersController < ApplicationController
    end
  end
 
- post 'login' do
+ post '/login' do
    user = User.find_by(:Username => params[:username])
    if user.password_digest == params[:password_digest]
      session[:user_id] = user.id
@@ -35,6 +35,15 @@ class UsersController < ApplicationController
      redirect to '/login'
    end
  end
+
+ get '/logout' do
+   if logged_in?
+     session.destroy
+     redirect to '/login'
+   else
+     redirect to '/login'
+   end
+  end
 
 
 
