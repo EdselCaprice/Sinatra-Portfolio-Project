@@ -1,1 +1,11 @@
+<% @user.wishlists.each do |wishlist| %>
+  <p><%= wishlist.giftee %></p>
+    <ul>
+      <li><%=wishlist.list_content<%>
+    <ul>
+<% end %>
+
+
+
+<p><a href="/new">Create New Wishlist</a>
 <p><a href="/logout">Logout</a>
