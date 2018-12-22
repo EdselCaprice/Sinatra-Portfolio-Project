@@ -22,7 +22,7 @@ class UsersController < ApplicationController
  end
 
  post '/signup' do
-   if (params[:username] == "" || params[:email] == "" || params[:password_digest] == "") && params[:username] != User.find_by(:username => params[:username])
+   if (params[:username] == "" || params[:email] == "" || params[:password_digest] == "") || !!User.find_by(:username => params[:username]) == true
      redirect to '/signup'
    else
      user = User.create(params)
