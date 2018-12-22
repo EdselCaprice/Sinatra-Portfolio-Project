@@ -8,6 +8,11 @@ class UsersController < ApplicationController
   end
  end
 
+ get '/user/show' do
+   @user = User.find_by_id(current_user.id)
+   erb :'/users/show'
+ end
+
  get '/login' do
    if logged_in?
      redirect to '/wishlists'

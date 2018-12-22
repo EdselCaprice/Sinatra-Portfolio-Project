@@ -1,5 +1,5 @@
 <% @user.wishlists.each do |wishlist| %>
-  <p><%= wishlist.giftee %></p>
+  <p><a href="/wishlists/<%=wishlist.id%>"><%= wishlist.giftee %></a></p>
     <ul>
       <li><%=wishlist.list_content%></li>
     </ul>
