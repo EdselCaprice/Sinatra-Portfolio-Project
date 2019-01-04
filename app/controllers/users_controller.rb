@@ -22,7 +22,7 @@ class UsersController < ApplicationController
  end
 
  post '/signup' do
-   if params[:username] == "" || params[:email] == "" || params[:password_digest] == "" || !!User.find_by(:username => params[:username]) == true || !params[:email].include?("@")
+   if params[:username] == "" || params[:email] == "" || params[:password] == "" || !!User.find_by(:username => params[:username]) == true || !params[:email].include?("@")
      redirect to '/signup'
    else
      user = User.create(params)
@@ -33,8 +33,8 @@ class UsersController < ApplicationController
 
  post '/login' do
    @user = User.find_by(:Username => params[:username])
-   #if @user && @user.authenticate(params[:password_digest])
-   if @user.password_digest == params[:password_digest]
+   if @user && @user.authenticate(params[:password])
+   #if @user.password_digest == params[:password_digest]
      session[:user_id] = @user.id
      erb :'/users/show'
    else

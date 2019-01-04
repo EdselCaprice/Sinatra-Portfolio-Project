@@ -2,11 +2,8 @@ class WishlistsController < ApplicationController
 
 
   get '/wishlists' do
-    if logged_in?
-      erb :'wishlists/wishlists'
-    else
-      redirect to '/login'
-    end
+    redirect_if_not_logged_in
+    erb :'wishlists/wishlists'
   end
 
   get '/wishlists/new' do
